@@ -1,14 +1,28 @@
 <script setup>
+import { onBeforeUnmount, onMounted, ref } from "vue"
+
 const props = defineProps({
   shine: {
     type: Boolean,
     withDefaults: false
   }
 })
+let shining = ref(false)
+let startShineLoop;
+onMounted(() => {
+  if(props.shine) {
+    startShineLoop = setInterval(()=>{
+      shining.value = !shining.value
+    },1000)
+  }
+})
+onBeforeUnmount(() => {
+  if(startShineLoop) clearInterval(startShineLoop)
+})
 </script>
 
 <template>
-  <div class="box" :class="{'shine':props.shine}"></div>
+  <div class="box" :class="{'shine':shining}"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -18,19 +32,10 @@ const props = defineProps({
   border: black solid 2px;
   background: radial-gradient(circle, rgba(113,81,95,1) 81%, rgba(0,0,0,1) 100%);
   box-sizing: border-box;
-  &.shine{
-    animation: shining 1s linear infinite;
-  }
-}
-@keyframes shining {
-  0%{
-    opacity: 1;
-  }
-  50%{
+  opacity: 1;
+  transition: opacity 1s linear;
+  &.shine {
     opacity: .6;
-  }
-  100%{
-    opacity: 1;
   }
 }
 </style>
