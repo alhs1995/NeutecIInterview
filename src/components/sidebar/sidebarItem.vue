@@ -11,6 +11,7 @@ const props = defineProps({
   }
 })
 const sidebarSelected = inject('sidebarSelected')
+// 抓哪個選項被選到了
 const thisSelected = computed(() => {
   return props.selectItemsData.find(element=>element.key==sidebarSelected.value[props.level-1]) ?? {key:''}
 })

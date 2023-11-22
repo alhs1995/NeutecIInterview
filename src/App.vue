@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref, onMounted, shallowRef } from 'vue'
+import { provide, ref, onMounted, shallowRef, watch } from 'vue'
 import data from './assets/data.json'
 
 // 設定接進來的參數
@@ -31,21 +31,27 @@ const onSlideCloseClick = () => {
 }
 provide("sidebarShow", show)
 
+// 原本打算做多版本用切換的，但是時間不太夠
 import sideBar from "./components/sidebar/sidebar.vue"
 const selectedSideComponent = shallowRef(sideBar)
 
 import mainAnswer1 from "./components/mainPage/answer1/index.vue"
 const selectedMainComponent = shallowRef(mainAnswer1)
 
-
+const sideSelected = ref([])
+provide('sidebarSelected', sideSelected)
+// 將點選的選項存進去到localstorage就可以在關閉分頁之後又重新讀到數據了
+// 不選用indexedDB或是Web SQL的原因是因為工期有點不太夠，不然性能和資料複雜度高一點的資料會比較好處理一點
+watch(sideSelected,(newValue) => {
+  localStorage.setItem('sideSelected', JSON.stringify(newValue))
+})
+import selectShow from "./components/sidebar/selectShow.vue"
 </script>
 
 <template>
   <div class="mainBg" @click="onSlideCloseClick">
     <div class="top">
-      <!-- <select>
-        <option value=""></option>
-      </select> -->
+      <selectShow />
       <button @click.stop="onSideOpenClick">
         <img src="./assets/menu.svg">
       </button>
