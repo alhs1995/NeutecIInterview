@@ -1,8 +1,9 @@
 <script setup>
 import box from './box.vue'
 import dot from './dot.vue'
+import { ref } from 'vue'
 // 指定箱子要不要閃爍
-const boxSetting = [
+const boxSetting = ref([
   false,
   false,
   true,
@@ -12,7 +13,7 @@ const boxSetting = [
   false,
   false,
   true
-]
+])
 // 寫個算單位的方便處理位置
 const getSet = (times) => {
   const setTimes = (2*times)+1
@@ -24,7 +25,7 @@ const getSet = (times) => {
   }
 }
 // 點點要多少個都可以，可以直接指定結束位置(額外需求2、3)
-const dots = [
+const dots = ref([
   {
     StartX: getSet(0),
     StartY: getSet(0),
@@ -49,7 +50,7 @@ const dots = [
     EndX: getSet(4),
     EndY: getSet(2),
   },
-]
+])
 </script>
 
 <template>
