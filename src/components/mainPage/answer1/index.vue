@@ -1,6 +1,6 @@
 <script setup>
-import box from './box.vue'
-import dot from './dot.vue'
+import boxItem from './box.vue'
+import dotItem from './dot.vue'
 import { ref } from 'vue'
 // 指定箱子要不要閃爍
 const boxSetting = ref([
@@ -55,8 +55,8 @@ const dots = ref([
 
 <template>
   <div class="boxContainer">
-    <box v-for="(box,index) in boxSetting" :key="'box'+index" :shine="box" />
-    <dot 
+    <boxItem v-for="(box,index) in boxSetting" :key="'box'+index" :shine="box" />
+    <dotItem 
       v-for="(dot,index) in dots" 
       :key="'dot'+index" 
       :start-x="dot.StartX" 
