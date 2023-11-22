@@ -20,6 +20,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+// animation動畫(動畫種類1)
 .dot {
   width: 30px;
   height: 30px;

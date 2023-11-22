@@ -23,7 +23,7 @@ const getSet = (times) => {
     return `calc(calc(calc(calc(100% - 6px) / 6) * ${setTimes}) + ${setAdd}px)`
   }
 }
-// 點點要多少個都可以，可以直接指定結束位置
+// 點點要多少個都可以，可以直接指定結束位置(額外需求2、3)
 const dots = [
   {
     StartX: getSet(0),

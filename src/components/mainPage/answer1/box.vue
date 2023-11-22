@@ -26,6 +26,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
+// transition(動畫種類2)
 .box {
   flex: 0 0 calc(calc(100% - 6px) / 3);
   height: 100px;
